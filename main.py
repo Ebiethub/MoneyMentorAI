@@ -12,7 +12,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Initialize Groq client
-GROQ_API_KEY = "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"
+GROQ_API_KEY = st.secrets["GROQ_API_KEY"]
 # st.secrets["GROQ_API_KEY"]
 
 # Initialize LLM with Groq API
@@ -27,7 +27,7 @@ model = ChatGroq(
 @tool
 def real_time_market_scanner(symbol: str) -> Dict:
     """Get real-time financial data from Alpha Vantage API"""
-    api_key = "P3ZIVLFZ8HYEWC8Q" # ALPHA_VANTAGE_KEY
+    api_key = st.secrets["GROQ_API_KEY"] # ALPHA_VANTAGE_KEY
     url = f"https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol={symbol}&apikey={api_key}"
     response = requests.get(url).json()
     return response['Global Quote']
